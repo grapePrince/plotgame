@@ -6,21 +6,12 @@ var oHandle = [];
 oHandle["cardList/get"] = mRequestHandlers.getCardList;
 
 function route(oReq, oRes) {
-	
-	
 	var sPath = mUrl.parse(oReq.url).pathname;
-	//var sPath = mUrl.parse(oRequest.url).pathname.split(sApi)[1];
-    sPath = sPath ? sPath.replace(/^\/|\/$/g, "") : "";
-	var sQuery = mUrl.parse(oReq.url).query;
-	
-	console.log(oReq.url);
-	console.log(sQuery);
-	console.log(sPath);
-	console.log(oHandle);
+	sPath = sPath ? sPath.replace(/^\/|\/$/g, "") : "";
+	var oQuery = mUrl.parse(oReq.url).query;
 
 	if (oHandle[sPath]) {
-		console.log('dfdfdfdf');
-		oHandle[sPath](sQuery, oRes);
+		oHandle[sPath](oReq, oRes, oQuery);
 	} else {
     	console.log("No request handler found for " + sPath);
     	oRes.writeHead(404, {"Content-Type": "text/plain"});

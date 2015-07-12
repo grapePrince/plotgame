@@ -19,8 +19,8 @@ db.open(function(err, db) {
     }
 });
  
-exports.getCardList = function(oReq, oRes) {
-    console.log(oReq);
+exports.getCardList = function(oReq, oRes, oQuery) {
+    console.log(oQuery);
 };
 
 exports.findById = function(req, res) {
