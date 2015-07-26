@@ -1,7 +1,7 @@
 
 exports.response = function(oResponse, oResult) {
 	oResponse.writeHead(200, {"Content-Type": "text/html"});
-    oResponse.write(oResult);
+    oResponse.json(oResult);
     oResponse.end(); 
 }
 
