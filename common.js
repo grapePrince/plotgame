@@ -4,3 +4,5 @@ exports.response = function(oResponse, oResult) {
     oResponse.write(oResult);
     oResponse.end(); 
 }
+
+exports.nCategory = 2;

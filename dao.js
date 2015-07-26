@@ -10,12 +10,23 @@ var mConn = mMysql.createConnection({
 mConn.connect();
 
 exports.getCardList = function(oReq, oRes, nVer) {	
-	var sQuery = 'select * from Card join Configuration where version = ' + mMysql.escape(nVer) + ';';
+	var sQuery = 'select category, name from Card join Configuration where version = ' + mMysql.escape(nVer) + ';',
+	    i, nLen,
+	    oResult = {},
+	    row;
+
 	mConn.query(sQuery, function(err, rows, fields) {
     	if (err) throw err;
     	if (rows) {
-    		console.log(rows);
-    		mCom.response(oRes, rows);
+    		for (i = 0, nLen = mCom.nCategory ; i < nLen ; i++) {
+    		    oReult[i] = [];    	
+    		}
+    		for (i = 0, nLen = rows.length ; i < nLen ; i++) {
+    			row = rows[i];
+    			oResult[row.category].push(row.name);
+    		}
+    		console.log(oResult);
+    		mCom.response(oRes, stringfy(oResult));
     	}
 	});
 };
