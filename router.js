@@ -8,7 +8,7 @@ oHandle["cardList/get"] = mRequestHandlers.getCardList;
 function route(oReq, oRes) {
 	var sPath = mUrl.parse(oReq.url).pathname;
 	sPath = sPath ? sPath.replace(/^\/|\/$/g, "") : "";
-	var oQuery = mUrl.parse(oReq.url).query;
+	var oQuery = oReq.query;
 
 	if (oHandle[sPath]) {
 		oHandle[sPath](oReq, oRes, oQuery);
