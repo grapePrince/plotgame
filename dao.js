@@ -19,7 +19,7 @@ exports.getCardList = function(oReq, oRes, nVer) {
     	if (err) throw err;
     	if (rows) {
     		for (i = 0, nLen = mCom.nCategory ; i < nLen ; i++) {
-    		    oReult[i] = [];    	
+    		    oResult[i] = [];    	
     		}
     		for (i = 0, nLen = rows.length ; i < nLen ; i++) {
     			row = rows[i];
