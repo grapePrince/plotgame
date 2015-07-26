@@ -1,14 +1,12 @@
 var mMysql = require('mysql');
 var mCom = require('./common');
-var mConn = mMysql.createConnection({
+var mConn = mMysql.createPool({
     connectionLimit : 100, //important
   	host     : '127.0.0.1',
   	user     : 'rahata',
   	password : 'latte!23',
   	database : 'plotgame'
 });
-
-mConn.connect();
 
 exports.getCardList = function(oReq, oRes, nVer) {	
 	var sQuery = 'select category, name from Card join Configuration where version = ' + mMysql.escape(nVer) + ';';
@@ -27,6 +25,9 @@ function getCardListCallback(oRes, rows) {
     		row = rows[i];
     		oResult[row.category].push(row.name);
     	}
+    	console.log(oRes);
+    	console.log(rows);
+    	console.log(oResult);
     	mCom.response(oRes, oResult);
     }
 }
