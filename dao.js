@@ -1,5 +1,5 @@
 var mMysql = require('mysql');
-var mCom = require('common');
+var mCom = require('./common');
 var mConn = mysql.createConnection({
   host     : '127.0.0.1',
   user     : 'rahata',
