@@ -15,7 +15,7 @@ exports.getCardList = function(oReq, oRes, nVer) {
 	getResult(sQuery, getCardListCallback, oRes);    
 };
 
-function getCardListCallback = function(oRes, rows) {
+function getCardListCallback(oRes, rows) {
 	var i, nLen,
 	    oResult = {},
 	    row;
