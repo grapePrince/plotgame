@@ -21,8 +21,11 @@ exports.getCardList = function(oReq, oRes, nVer) {
     		for (i = 0, nLen = mCom.nCategory ; i < nLen ; i++) {
     		    oResult[i] = [];    	
     		}
+    		console.log(oResult);
     		for (i = 0, nLen = rows.length ; i < nLen ; i++) {
     			row = rows[i];
+    			console.log(row);
+    			console.log(oResult[row.category]);
     			oResult[row.category].push(row.name);
     		}
     		console.log(oResult);
