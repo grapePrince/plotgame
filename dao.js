@@ -10,8 +10,7 @@ var mConn = mMysql.createConnection({
 mConn.connect();
 
 exports.getCardList = function(oReq, oRes, nVer) {	
-	var sQuery = 'select * from Card join Configuration where version = {version};';
-	sQuery.replace('\{version\}', mMysql.escape(nVer));
+	var sQuery = 'select * from Card join Configuration where version = ' + mMysql.escape(nVer) ';';
 	mConn.query(sQuery, function(err, rows, fields) {
     	if (err) throw err;
     	if (rows) {
