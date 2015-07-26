@@ -25,9 +25,6 @@ function getCardListCallback(oRes, rows) {
     		row = rows[i];
     		oResult[row.category].push(row.name);
     	}
-    	console.log(oRes);
-    	console.log(rows);
-    	console.log(oResult);
     	mCom.response(oRes, oResult);
     }
 }
