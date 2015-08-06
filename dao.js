@@ -19,8 +19,7 @@ function getCardListCallback(oRes, nVer, rows) {
 	    oResult = {},
 	    oCardList = {},
 	    row;
-	console.log(rows);
-	if (rows) {
+	if (rows && rows.length > 0) {
     	for (i = 0, nLen = mCom.nCategory ; i < nLen ; i++) {
     		oCardList[i] = [];    	
     	}
