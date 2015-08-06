@@ -9,23 +9,31 @@ var mConn = mMysql.createPool({
 });
 
 exports.getCardList = function(oReq, oRes, nVer) {	
-	var sQuery = 'select category, name from Card join Configuration where version = ' + mMysql.escape(nVer) + ';';
-	getResult(sQuery, getCardListCallback, oRes);    
+	var sQuery = 'select category, name, version from Card join Configuration where version >= ' + mMysql.escape(nVer) + ';';
+	getResult(sQuery, getCardListCallback.bind(nVer), oRes);    
 };
 
-function getCardListCallback(oRes, rows) {
+function getCardListCallback(nVer, oRes, rows) {
+	console.log(nVer);
 	var i, nLen,
 	    oResult = {},
+	    oCardList = {},
 	    row;
 	if (rows) {
     	for (i = 0, nLen = mCom.nCategory ; i < nLen ; i++) {
-    		oResult[i] = [];    	
+    		oCardList[i] = [];    	
     	}
     	for (i = 0, nLen = rows.length ; i < nLen ; i++) {
     		row = rows[i];
-    		oResult[row.category].push(row.name);
+    		oCardList[row.category].push(row.name);
     	}
-    	mCom.response(oRes, oResult);
+    	oResult.cardList = oCardList;
+    	oResult.version = rows[0].version;
+    	oRes.json(oResult);
+    } else {
+    	oResult.cardList = []];
+    	oResult.version = nVer;
+    	oRes.json(oResult);
     }
 }
 
