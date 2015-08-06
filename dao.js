@@ -10,7 +10,7 @@ var mConn = mMysql.createPool({
 
 exports.getCardList = function(oReq, oRes, nVer) {	
 	var sQuery = 'select category, name, version from Card join Configuration where version >= ' + mMysql.escape(nVer) + ';';
-	getResult(sQuery, getCardListCallback.bind(this, oRes, nVer);    
+	getResult(sQuery, getCardListCallback.bind(this, oRes, nVer));    
 };
 
 function getCardListCallback(oRes, nVer, rows) {
