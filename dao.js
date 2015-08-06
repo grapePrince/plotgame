@@ -31,7 +31,7 @@ function getCardListCallback(nVer, oRes, rows) {
     	oResult.version = rows[0].version;
     	oRes.json(oResult);
     } else {
-    	oResult.cardList = []];
+    	oResult.cardList = [];
     	oResult.version = nVer;
     	oRes.json(oResult);
     }
