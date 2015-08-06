@@ -10,10 +10,10 @@ var mConn = mMysql.createPool({
 
 exports.getCardList = function(oReq, oRes, nVer) {	
 	var sQuery = 'select category, name, version from Card join Configuration where version >= ' + mMysql.escape(nVer) + ';';
-	getResult(sQuery, getCardListCallback.bind(nVer), oRes);    
+	getResult(sQuery, getCardListCallback.bind(this, oRes, nVer);    
 };
 
-function getCardListCallback(nVer, oRes, rows) {
+function getCardListCallback(oRes, nVer, rows) {
 	console.log(nVer);
 	var i, nLen,
 	    oResult = {},
@@ -35,9 +35,9 @@ function getCardListCallback(nVer, oRes, rows) {
     	oResult.version = nVer;
     	oRes.json(oResult);
     }
-}
+};
 
-function getResult(sQuery, fCallback, oRes) {
+function getResult(sQuery, fCallback) {
     mConn.getConnection(function(err,conn){
         if (err) {
           conn.release();
@@ -52,8 +52,8 @@ function getResult(sQuery, fCallback, oRes) {
         conn.query(sQuery,function(err,rows){
             conn.release();
             if(!err) {
-            	fCallback.call(this, oRes, rows);
+            	fCallback.call(this, rows);
             }           
         });
   });
-}
+};
